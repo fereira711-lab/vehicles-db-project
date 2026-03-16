@@ -1,0 +1,258 @@
+{
+  "toyota": {
+    "modelos": [
+      { "nome": "corolla cross hybrid", "alias": [], "prioridade": 1 },
+      { "nome": "corolla cross", "alias": [], "prioridade": 2 },
+      { "nome": "corolla", "alias": [], "prioridade": 3 },
+      { "nome": "yaris", "alias": [], "prioridade": 4 },
+      { "nome": "etios", "alias": [], "prioridade": 5 },
+      { "nome": "hilux", "alias": [], "prioridade": 6 },
+      { "nome": "sw4", "alias": [], "prioridade": 7 },
+      { "nome": "rav4", "alias": [], "prioridade": 8 },
+      { "nome": "camry", "alias": [], "prioridade": 9 },
+      { "nome": "prius", "alias": [], "prioridade": 10 }
+    ]
+  },
+  "honda": {
+    "modelos": [
+      { "nome": "hr-v", "alias": ["hrv", "hr v"], "prioridade": 1 },
+      { "nome": "cr-v", "alias": ["crv", "cr v"], "prioridade": 2 },
+      { "nome": "wr-v", "alias": ["wrv", "wr v"], "prioridade": 3 },
+      { "nome": "fit twist", "alias": [], "prioridade": 4 },
+      { "nome": "fit", "alias": [], "prioridade": 5 },
+      { "nome": "city", "alias": [], "prioridade": 6 },
+      { "nome": "civic si", "alias": [], "prioridade": 7 },
+      { "nome": "civic", "alias": [], "prioridade": 8 },
+      { "nome": "accord", "alias": [], "prioridade": 9 }
+    ]
+  },
+  "chevrolet": {
+    "modelos": [
+      { "nome": "cruze sport6", "alias": [], "prioridade": 1 },
+      { "nome": "cruze", "alias": [], "prioridade": 2 },
+      { "nome": "tracker premiere", "alias": [], "prioridade": 3 },
+      { "nome": "tracker", "alias": [], "prioridade": 4 },
+      { "nome": "onix plus", "alias": [], "prioridade": 5 },
+      { "nome": "onix", "alias": [], "prioridade": 6 },
+      { "nome": "spin", "alias": [], "prioridade": 7 },
+      { "nome": "s10", "alias": [], "prioridade": 8 },
+      { "nome": "montana", "alias": [], "prioridade": 9 },
+      { "nome": "equinox", "alias": [], "prioridade": 10 },
+      { "nome": "blazer", "alias": [], "prioridade": 11 },
+      { "nome": "celta", "alias": [], "prioridade": 12 },
+      { "nome": "corsa", "alias": [], "prioridade": 13 },
+      { "nome": "astra", "alias": [], "prioridade": 14 },
+      { "nome": "vectra", "alias": [], "prioridade": 15 },
+      { "nome": "zafira", "alias": [], "prioridade": 16 },
+      { "nome": "kadett", "alias": [], "prioridade": 17 },
+      { "nome": "monza", "alias": [], "prioridade": 18 },
+      { "nome": "omega", "alias": [], "prioridade": 19 }
+    ]
+  },
+  "volkswagen": {
+    "modelos": [
+      { "nome": "golf", "alias": [], "prioridade": 1 },
+      { "nome": "jetta", "alias": [], "prioridade": 2 },
+      { "nome": "tiguan", "alias": [], "prioridade": 3 },
+      { "nome": "passat", "alias": [], "prioridade": 4 },
+      { "nome": "tcross", "alias": ["t-cross"], "prioridade": 5 },
+      { "nome": "nivus", "alias": [], "prioridade": 6 },
+      { "nome": "polo", "alias": [], "prioridade": 7 },
+      { "nome": "virtus", "alias": [], "prioridade": 8 },
+      { "nome": "voyage", "alias": [], "prioridade": 9 },
+      { "nome": "saveiro", "alias": [], "prioridade": 10 },
+      { "nome": "amarok", "alias": [], "prioridade": 11 },
+      { "nome": "spacefox", "alias": [], "prioridade": 12 },
+      { "nome": "crossfox", "alias": [], "prioridade": 13 },
+      { "nome": "kombi", "alias": [], "prioridade": 14 },
+      { "nome": "besouro", "alias": [], "prioridade": 15 },
+      { "nome": "fusca", "alias": [], "prioridade": 16 },
+      { "nome": "eos", "alias": [], "prioridade": 17 },
+      { "nome": "up", "alias": ["up!"], "prioridade": 18 },
+      { "nome": "cc", "alias": [], "prioridade": 19 },
+      { "nome": "gol", "alias": [], "prioridade": 20 },
+      { "nome": "fox", "alias": [], "prioridade": 21 }
+    ]
+  },
+  "fiat": {
+    "modelos": [
+      { "nome": "fastback", "alias": [], "prioridade": 1 },
+      { "nome": "pulse", "alias": [], "prioridade": 2 },
+      { "nome": "toro", "alias": [], "prioridade": 3 },
+      { "nome": "strada", "alias": [], "prioridade": 4 },
+      { "nome": "argo", "alias": [], "prioridade": 5 },
+      { "nome": "cronos", "alias": [], "prioridade": 6 },
+      { "nome": "mobi", "alias": [], "prioridade": 7 },
+      { "nome": "uno", "alias": [], "prioridade": 8 },
+      { "nome": "palio", "alias": [], "prioridade": 9 },
+      { "nome": "siena", "alias": [], "prioridade": 10 },
+      { "nome": "bravo", "alias": [], "prioridade": 11 },
+      { "nome": "linea", "alias": [], "prioridade": 12 },
+      { "nome": "punto", "alias": [], "prioridade": 13 },
+      { "nome": "doblo", "alias": ["doblô"], "prioridade": 14 },
+      { "nome": "ducato", "alias": [], "prioridade": 15 },
+      { "nome": "fiorino", "alias": [], "prioridade": 16 },
+      { "nome": "tipo", "alias": [], "prioridade": 17 }
+    ]
+  },
+  "jeep": {
+    "modelos": [
+      { "nome": "compass trailhawk", "alias": [], "prioridade": 1 },
+      { "nome": "compass", "alias": [], "prioridade": 2 },
+      { "nome": "renegade", "alias": [], "prioridade": 3 },
+      { "nome": "commander", "alias": [], "prioridade": 4 },
+      { "nome": "wrangler", "alias": [], "prioridade": 5 },
+      { "nome": "cherokee", "alias": [], "prioridade": 6 }
+    ]
+  },
+  "ford": {
+    "modelos": [
+      { "nome": "territory", "alias": [], "prioridade": 1 },
+      { "nome": "bronco", "alias": [], "prioridade": 2 },
+      { "nome": "ranger", "alias": [], "prioridade": 3 },
+      { "nome": "ecosport", "alias": [], "prioridade": 4 },
+      { "nome": "fusion", "alias": [], "prioridade": 5 },
+      { "nome": "edge", "alias": [], "prioridade": 6 },
+      { "nome": "focus", "alias": [], "prioridade": 7 },
+      { "nome": "fiesta", "alias": [], "prioridade": 8 },
+      { "nome": "ka", "alias": [], "prioridade": 9 },
+      { "nome": "transit", "alias": [], "prioridade": 10 },
+      { "nome": "courier", "alias": [], "prioridade": 11 }
+    ]
+  },
+  "hyundai": {
+    "modelos": [
+      { "nome": "creta", "alias": [], "prioridade": 1 },
+      { "nome": "tucson", "alias": [], "prioridade": 2 },
+      { "nome": "santa fe", "alias": ["santa.fe"], "prioridade": 3 },
+      { "nome": "hb20", "alias": [], "prioridade": 4 },
+      { "nome": "i30", "alias": [], "prioridade": 5 },
+      { "nome": "azera", "alias": [], "prioridade": 6 },
+      { "nome": "elantra", "alias": [], "prioridade": 7 },
+      { "nome": "veloster", "alias": [], "prioridade": 8 }
+    ]
+  },
+  "kia": {
+    "modelos": [
+      { "nome": "sportage", "alias": [], "prioridade": 1 },
+      { "nome": "sorento", "alias": [], "prioridade": 2 },
+      { "nome": "cerato", "alias": [], "prioridade": 3 },
+      { "nome": "soul", "alias": [], "prioridade": 4 },
+      { "nome": "stinger", "alias": [], "prioridade": 5 },
+      { "nome": "bongo", "alias": [], "prioridade": 6 },
+      { "nome": "k2500", "alias": [], "prioridade": 7 }
+    ]
+  },
+  "renault": {
+    "modelos": [
+      { "nome": "duster", "alias": ["oroch"], "prioridade": 1 },
+      { "nome": "captur", "alias": [], "prioridade": 2 },
+      { "nome": "kwid", "alias": [], "prioridade": 3 },
+      { "nome": "sandero", "alias": ["sandeiro"], "prioridade": 4 },
+      { "nome": "logan", "alias": [], "prioridade": 5 },
+      { "nome": "fluence", "alias": [], "prioridade": 6 },
+      { "nome": "symbol", "alias": [], "prioridade": 7 },
+      { "nome": "megane", "alias": ["mégane"], "prioridade": 8 },
+      { "nome": "scenic", "alias": ["scénic"], "prioridade": 9 },
+      { "nome": "clio", "alias": [], "prioridade": 10 },
+      { "nome": "kangoo", "alias": ["kaango"], "prioridade": 11 },
+      { "nome": "master", "alias": [], "prioridade": 12 },
+      { "nome": "grandtour", "alias": ["grand tour"], "prioridade": 13 },
+      { "nome": "zoe", "alias": [], "prioridade": 14 }
+    ]
+  },
+  "nissan": {
+    "modelos": [
+      { "nome": "kicks", "alias": [], "prioridade": 1 },
+      { "nome": "frontier", "alias": [], "prioridade": 2 },
+      { "nome": "sentra", "alias": [], "prioridade": 3 },
+      { "nome": "versa", "alias": [], "prioridade": 4 },
+      { "nome": "march", "alias": [], "prioridade": 5 },
+      { "nome": "livina", "alias": [], "prioridade": 6 },
+      { "nome": "tiida", "alias": [], "prioridade": 7 }
+    ]
+  },
+  "mitsubishi": {
+    "modelos": [
+      { "nome": "outlander", "alias": [], "prioridade": 1 },
+      { "nome": "pajero", "alias": [], "prioridade": 2 },
+      { "nome": "l200", "alias": [], "prioridade": 3 },
+      { "nome": "asx", "alias": [], "prioridade": 4 },
+      { "nome": "eclipse", "alias": [], "prioridade": 5 },
+      { "nome": "lancer", "alias": [], "prioridade": 6 }
+    ]
+  },
+  "peugeot": {
+    "modelos": [
+      { "nome": "3008", "alias": [], "prioridade": 1 },
+      { "nome": "2008", "alias": [], "prioridade": 2 },
+      { "nome": "408", "alias": [], "prioridade": 3 },
+      { "nome": "308", "alias": [], "prioridade": 4 },
+      { "nome": "208", "alias": [], "prioridade": 5 },
+      { "nome": "307", "alias": [], "prioridade": 6 },
+      { "nome": "207", "alias": [], "prioridade": 7 },
+      { "nome": "206", "alias": [], "prioridade": 8 },
+      { "nome": "hoggar", "alias": [], "prioridade": 9 }
+    ]
+  },
+  "citroen": {
+    "modelos": [
+      { "nome": "c4 lounge", "alias": ["c4lounge"], "prioridade": 1 },
+      { "nome": "c4", "alias": [], "prioridade": 2 },
+      { "nome": "c3", "alias": [], "prioridade": 3 },
+      { "nome": "c5", "alias": [], "prioridade": 4 },
+      { "nome": "aircross", "alias": [], "prioridade": 5 },
+      { "nome": "berlingo", "alias": [], "prioridade": 6 },
+      { "nome": "jumper", "alias": [], "prioridade": 7 },
+      { "nome": "xsara", "alias": [], "prioridade": 8 }
+    ]
+  },
+  "audi": {
+    "modelos": [
+      { "nome": "a3", "alias": [], "prioridade": 1 },
+      { "nome": "a4", "alias": [], "prioridade": 2 },
+      { "nome": "a5", "alias": [], "prioridade": 3 },
+      { "nome": "a6", "alias": [], "prioridade": 4 },
+      { "nome": "a7", "alias": [], "prioridade": 5 },
+      { "nome": "q3", "alias": [], "prioridade": 6 },
+      { "nome": "q5", "alias": [], "prioridade": 7 },
+      { "nome": "q7", "alias": [], "prioridade": 8 },
+      { "nome": "tt", "alias": [], "prioridade": 9 }
+    ]
+  },
+  "bmw": {
+    "modelos": [
+      { "nome": "serie 1", "alias": ["série 1"], "prioridade": 1 },
+      { "nome": "serie 3", "alias": ["série 3"], "prioridade": 2 },
+      { "nome": "serie 5", "alias": ["série 5"], "prioridade": 3 },
+      { "nome": "x1", "alias": [], "prioridade": 4 },
+      { "nome": "x3", "alias": [], "prioridade": 5 },
+      { "nome": "x5", "alias": [], "prioridade": 6 }
+    ]
+  },
+  "mercedes": {
+    "modelos": [
+      { "nome": "classe a", "alias": [], "prioridade": 1 },
+      { "nome": "classe c", "alias": [], "prioridade": 2 },
+      { "nome": "cla", "alias": [], "prioridade": 3 },
+      { "nome": "gla", "alias": [], "prioridade": 4 },
+      { "nome": "sprinter", "alias": [], "prioridade": 5 },
+      { "nome": "vito", "alias": [], "prioridade": 6 }
+    ]
+  },
+  "dodge": {
+    "modelos": [
+      { "nome": "ram", "alias": [], "prioridade": 1 },
+      { "nome": "journey", "alias": [], "prioridade": 2 },
+      { "nome": "challenger", "alias": [], "prioridade": 3 }
+    ]
+  },
+  "subaru": {
+    "modelos": [
+      { "nome": "impreza", "alias": [], "prioridade": 1 },
+      { "nome": "forester", "alias": [], "prioridade": 2 },
+      { "nome": "outback", "alias": [], "prioridade": 3 },
+      { "nome": "legacy", "alias": [], "prioridade": 4 }
+    ]
+  }
+}
