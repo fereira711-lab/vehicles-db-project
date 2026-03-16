@@ -9,8 +9,7 @@ const INDEX_FILE = "vehicles-index.json";
 const MARCAS_RELEVANTES = new Set([
   "FIAT", "VOLKSWAGEN", "CHEVROLET", "FORD", "TOYOTA", "HONDA",
   "HYUNDAI", "RENAULT", "NISSAN", "JEEP", "MITSUBISHI", "PEUGEOT",
-  "CITROËN", "CITROEN", "KIA", "BMW", "MERCEDES-BENZ", "AUDI",
-  "DODGE", "RAM",
+  "CITROËN", "CITROEN", "KIA", "MERCEDES-BENZ", "AUDI",
 ]);
 
 async function fetchJSON(url, retries = 8) {
