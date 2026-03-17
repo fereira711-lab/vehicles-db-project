@@ -1,22 +1,52 @@
 import fs from "fs";
 
-const BASE_URL = "https://parallelum.com.br/fipe/api/v1";
-const TIPOS = ["carros", "caminhoes"];
+const BASE_URL = "https://veiculos.fipe.org.br/api/veiculos";
 const DB_FILE = "vehicles-db.json";
 const INDEX_FILE = "vehicles-index.json";
 
 // Marcas mais relevantes para autopeças no Brasil
-const MARCAS_RELEVANTES = new Set([
-  "FIAT", "VOLKSWAGEN", "CHEVROLET", "FORD", "TOYOTA", "HONDA",
-  "HYUNDAI", "RENAULT", "NISSAN", "JEEP", "MITSUBISHI", "PEUGEOT",
-  "CITROËN", "CITROEN", "KIA", "MERCEDES-BENZ", "AUDI",
-]);
+// Chave = como salvar no DB, Valor = palavras para match no nome da FIPE
+const MARCAS_RELEVANTES = {
+  "FIAT": "fiat",
+  "VOLKSWAGEN": "volkswagen",
+  "CHEVROLET": "chevrolet",
+  "FORD": "ford",
+  "TOYOTA": "toyota",
+  "HONDA": "honda",
+  "HYUNDAI": "hyundai",
+  "RENAULT": "renault",
+  "NISSAN": "nissan",
+  "JEEP": "jeep",
+  "MITSUBISHI": "mitsubishi",
+  "PEUGEOT": "peugeot",
+  "CITROËN": "citro",
+  "KIA": "kia",
+  "MERCEDES-BENZ": "mercedes",
+  "AUDI": "audi",
+};
 
-async function fetchJSON(url, retries = 8) {
+function matchMarca(fipeLabel) {
+  const lower = fipeLabel.toLowerCase();
+  for (const [nome, keyword] of Object.entries(MARCAS_RELEVANTES)) {
+    if (lower.includes(keyword)) return nome;
+  }
+  return null;
+}
+
+const HEADERS = {
+  "Referer": "https://veiculos.fipe.org.br",
+  "Content-Type": "application/x-www-form-urlencoded",
+};
+
+async function postFIPE(endpoint, body, retries = 8) {
   for (let i = 0; i < retries; i++) {
     try {
-      await new Promise(r => setTimeout(r, 300));
-      const res = await fetch(url);
+      await new Promise(r => setTimeout(r, 200));
+      const res = await fetch(`${BASE_URL}/${endpoint}`, {
+        method: "POST",
+        headers: HEADERS,
+        body: new URLSearchParams(body).toString(),
+      });
       if (res.status === 429) {
         const wait = 5000 * (i + 1);
         if (i < 3) process.stdout.write("⏳");
@@ -24,12 +54,19 @@ async function fetchJSON(url, retries = 8) {
         continue;
       }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
+      const data = await res.json();
+      if (data.erro) return null;
+      return data;
     } catch (e) {
       if (i === retries - 1) throw e;
       await new Promise(r => setTimeout(r, 3000 * (i + 1)));
     }
   }
+}
+
+async function getLatestTable() {
+  const tables = await postFIPE("ConsultarTabelaDeReferencia", {});
+  return tables[0].Codigo;
 }
 
 async function buildDB() {
@@ -60,68 +97,86 @@ async function buildDB() {
     return;
   }
 
-  console.log("🚗 Construindo banco de veículos FIPE...\n");
+  const tabela = await getLatestTable();
+  console.log(`🚗 Construindo banco de veículos FIPE (tabela ${tabela})...\n`);
+
   const db = {};
   const index = [];
   let totalModelos = 0;
   let totalAnos = 0;
 
-  for (const tipo of TIPOS) {
-    console.log(`📂 Tipo: ${tipo}`);
-    const marcas = await fetchJSON(`${BASE_URL}/${tipo}/marcas`);
-    if (!marcas) { console.log("   ⚠ Falha ao buscar marcas, pulando..."); continue; }
-    console.log(`   ${marcas.length} marcas encontradas`);
+  // codigoTipoVeiculo: 1 = carros (inclui caminhonetes)
+  const tipoVeiculo = 1;
+  const tipo = "carros";
 
-    for (const marca of marcas) {
-      const marcaNome = marca.nome.toUpperCase();
-      if (!MARCAS_RELEVANTES.has(marcaNome)) continue;
-      if (!db[marcaNome]) {
-        db[marcaNome] = { codigo: marca.codigo, tipo, modelos: {} };
-      }
+  console.log(`📂 Buscando marcas...`);
+  const marcas = await postFIPE("ConsultarMarcas", {
+    codigoTabelaReferencia: tabela,
+    codigoTipoVeiculo: tipoVeiculo,
+  });
+  if (!marcas) { console.log("⚠ Falha ao buscar marcas"); return; }
+  console.log(`   ${marcas.length} marcas encontradas`);
 
-      const modelos = await fetchJSON(`${BASE_URL}/${tipo}/marcas/${marca.codigo}/modelos`);
-      if (!modelos?.modelos) { console.log(`   → ${marcaNome}: ⚠ falha, pulando...`); continue; }
-      console.log(`   → ${marcaNome}: ${modelos.modelos.length} modelos`);
+  for (const marca of marcas) {
+    const marcaNome = matchMarca(marca.Label);
+    if (!marcaNome) continue;
 
-      for (const modelo of modelos.modelos) {
-        const modeloNome = modelo.nome;
-        totalModelos++;
+    const modelos = await postFIPE("ConsultarModelos", {
+      codigoTabelaReferencia: tabela,
+      codigoTipoVeiculo: tipoVeiculo,
+      codigoMarca: marca.Value,
+    });
+    if (!modelos?.Modelos) { console.log(`   → ${marcaNome}: ⚠ falha, pulando...`); continue; }
+    console.log(`   → ${marcaNome}: ${modelos.Modelos.length} modelos`);
 
-        const anos = await fetchJSON(`${BASE_URL}/${tipo}/marcas/${marca.codigo}/modelos/${modelo.codigo}/anos`);
-        if (!anos) continue;
-
-        const anosLista = [];
-        for (const ano of anos) {
-          const anoNum = parseInt(ano.nome);
-          if (!isNaN(anoNum)) {
-            anosLista.push({ codigo: ano.codigo, ano: anoNum, combustivel: ano.nome.replace(/\d+\s*/, "").trim() });
-            totalAnos++;
-
-            index.push({
-              marca: marcaNome,
-              modelo: modeloNome,
-              ano: anoNum,
-              combustivel: ano.nome.replace(/\d+\s*/, "").trim(),
-              tipo,
-              codigoMarca: marca.codigo,
-              codigoModelo: modelo.codigo,
-              codigoAno: ano.codigo,
-            });
-          }
-        }
-
-        db[marcaNome].modelos[modeloNome] = {
-          codigo: modelo.codigo,
-          anos: anosLista,
-        };
-
-        // Rate limiting entre modelos
-        await new Promise(r => setTimeout(r, 150));
-      }
-
-      // Rate limiting entre marcas
-      await new Promise(r => setTimeout(r, 500));
+    if (!db[marcaNome]) {
+      db[marcaNome] = { codigo: marca.Value, tipo, modelos: {} };
     }
+
+    for (const modelo of modelos.Modelos) {
+      const modeloNome = modelo.Label;
+      totalModelos++;
+
+      const anos = await postFIPE("ConsultarAnoModelo", {
+        codigoTabelaReferencia: tabela,
+        codigoTipoVeiculo: tipoVeiculo,
+        codigoMarca: marca.Value,
+        codigoModelo: modelo.Value,
+      });
+      if (!anos) continue;
+
+      const anosLista = [];
+      for (const ano of anos) {
+        const anoNum = parseInt(ano.Label);
+        if (!isNaN(anoNum) && anoNum !== 32000) {
+          const combustivel = ano.Label.replace(/\d+\s*/, "").trim();
+          anosLista.push({ codigo: ano.Value, ano: anoNum, combustivel });
+          totalAnos++;
+
+          index.push({
+            marca: marcaNome,
+            modelo: modeloNome,
+            ano: anoNum,
+            combustivel,
+            tipo,
+            codigoMarca: marca.Value,
+            codigoModelo: String(modelo.Value),
+            codigoAno: ano.Value,
+          });
+        }
+      }
+
+      db[marcaNome].modelos[modeloNome] = {
+        codigo: String(modelo.Value),
+        anos: anosLista,
+      };
+
+      // Rate limiting entre modelos
+      await new Promise(r => setTimeout(r, 150));
+    }
+
+    // Rate limiting entre marcas
+    await new Promise(r => setTimeout(r, 500));
   }
 
   fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2));
