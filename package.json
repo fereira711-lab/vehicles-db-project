@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node build-vehicles-db.js",
-    "search": "node vehicles-lookup.js"
+    "search": "node vehicles-lookup.js",
+    "update": "node update-monthly.js"
   }
 }
